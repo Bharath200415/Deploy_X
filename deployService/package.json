@@ -9,5 +9,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "aws-sdk": "^2.1693.0",
+    "redis": "^6.0.0"
+  }
 }
