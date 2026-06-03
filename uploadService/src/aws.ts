@@ -20,10 +20,11 @@ const s3 = new S3({
 
 export const uploadFile = async (fileName:string,localFilePath:string)=>{
     const fileContent = fs.readFileSync(localFilePath);
+    const normalizedKey = fileName.replace(/\\/g, '/');
     const response = await s3.upload({
         Body:fileContent,
         Bucket:bucket,
-        Key:fileName,
+        Key:normalizedKey,
 
     }).promise();
 

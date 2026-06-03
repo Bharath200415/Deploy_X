@@ -38,14 +38,20 @@ app.post("/deploy",async(req,res)=>{
         })
     }
 
-    const files = getAllFiles(path.join(__dirname,`output/${id}`)).filter(
+    const outputRoot = path.join(__dirname, "output");
+    const repoRoot = path.join(outputRoot, id);
+
+    const files = getAllFiles(repoRoot).filter(
         file=>!file.includes(".git") && !file.includes("node_modules")
     );
 
-    files.forEach(async file=>{
-        //users/bhara/desktop/
-        await uploadFile(file.slice(__dirname.length+1),file);
-    })
+    await Promise.all(
+        files.map(async file=>{
+            // Always upload as output/<id>/... using forward slashes for object keys.
+            const relativePath = path.relative(outputRoot, file).split(path.sep).join('/');
+            await uploadFile(`output/${relativePath}`, file);
+        })
+    );
 
     publisher.lPush("build-queue",id).catch(err=>console.error('Redis LPUSH error',err));
     

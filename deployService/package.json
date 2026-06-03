@@ -12,6 +12,10 @@
   "type": "commonjs",
   "dependencies": {
     "aws-sdk": "^2.1693.0",
+    "dotenv": "^17.4.2",
     "redis": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1"
   }
 }
