@@ -1,21 +1,47 @@
-import { exec, spawn } from "child_process";
+import { spawn } from "child_process";
 import path from "path";
 
 export function buildProject(id: string) {
-    return new Promise((resolve) => {
-        const child = exec(`cd ${path.join(__dirname, `output/${id}`)} && npm install && npm run build`)
+    const projectDir = path.join(__dirname, `output/${id}`);
 
-        child.stdout?.on('data', function(data) {
-            console.log('stdout: ' + data);
-        });
-        child.stderr?.on('data', function(data) {
-            console.log('stderr: ' + data);
-        });
+    return new Promise<void>((resolve, reject) => {
+        const install = spawn('npm', ['install'], { cwd: projectDir, shell: true });
 
-        child.on('close', function(code) {
-           resolve("")
+        install.stdout?.on('data', data => {
+            console.log('npm install stdout: ' + data);
         });
 
-    })
+        install.stderr?.on('data', data => {
+            console.log('npm install stderr: ' + data);
+        });
+
+        install.on('error', reject);
+        install.on('close', installCode => {
+            if (installCode !== 0) {
+                reject(new Error(`npm install failed with exit code ${installCode}`));
+                return;
+            }
+
+            const build = spawn('npm', ['run', 'build'], { cwd: projectDir, shell: true });
+
+            build.stdout?.on('data', data => {
+                console.log('npm run build stdout: ' + data);
+            });
+
+            build.stderr?.on('data', data => {
+                console.log('npm run build stderr: ' + data);
+            });
+
+            build.on('error', reject);
+            build.on('close', buildCode => {
+                if (buildCode !== 0) {
+                    reject(new Error(`npm run build failed with exit code ${buildCode}`));
+                    return;
+                }
+
+                resolve();
+            });
+        });
+    });
 
 }

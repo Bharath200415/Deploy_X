@@ -9,6 +9,10 @@ import { uploadFile } from "./aws";
 import {createClient} from "redis";
 
 const redURL= process.env.REDIS_URL ?? 'redis://127.0.0.1:6379';
+
+const subscriber = createClient();
+subscriber.connect();
+
 const publisher = createClient({
     url: redURL
 });
@@ -29,7 +33,7 @@ app.post("/deploy",async(req,res)=>{
     
     try{
         await simpleGit().clone(repoURL,path.join(__dirname,`output/${id}`),
-        ["--depth","1"] //shallow cloning
+        ["--depth","1"] //shallow cloning ignores a few deps
     );
     }catch(err){
         console.log(err);
@@ -54,7 +58,8 @@ app.post("/deploy",async(req,res)=>{
     );
 
     publisher.lPush("build-queue",id).catch(err=>console.error('Redis LPUSH error',err));
-    
+    publisher.hSet("status",id,"uploaded");
+    //const val = hget
     console.log(repoURL);
 
 
@@ -67,6 +72,14 @@ app.get("/health",(req,res)=>{
     console.log("The server is up :)");
     res.json({
         message:"the backend is up!"
+    })
+})
+
+app.get("/status",async(req,res)=>{
+    const id = req.query.id;
+    const response = await subscriber.hGet("status",id as string);
+    res.json({
+        status:response
     })
 })
 
