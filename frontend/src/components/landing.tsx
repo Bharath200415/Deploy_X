@@ -33,6 +33,7 @@ export function Landing() {
             </div>
             <Button onClick={async () => {
               setUploading(true);
+              //upload service
               const res = await axios.post(`${BACKEND_UPLOAD_URL}/deploy`, {
                 repoUrl: repoUrl
               });
@@ -64,7 +65,7 @@ export function Landing() {
           </div>
           <br />
           <Button className="w-full" variant="outline">
-            <a href={`http://${uploadId}.10kdevs.com/index.html`} target="_blank">
+            <a href={`http://${uploadId}.bharath.codes/index.html`} target="_blank">
               Visit Website
             </a>
           </Button>
