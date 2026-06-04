@@ -168,7 +168,7 @@ export default function LandingHero() {
               fontFamily: "var(--font-mono)",
               fontSize: 10,
               letterSpacing: "0.15em",
-              textTransform: "uppercase",
+              
               textDecoration: "none",
               color: "var(--text-secondary)",
               backdropFilter: "blur(4px)",

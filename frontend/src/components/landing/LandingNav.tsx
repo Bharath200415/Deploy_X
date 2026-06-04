@@ -13,7 +13,7 @@ export default function LandingNav() {
   }, []);
 
   return (
-    <div style={{ position: "sticky", top: 0, zIndex: 50, maxWidth: "83rem", margin: "0 auto" }}>
+    <div style={{ position: "sticky", top: 0, zIndex: 50, width: "100%", maxWidth: "83rem", margin: "0 auto" }}>
       <motion.nav
         initial={{ opacity: 0, y: -6 }}
         animate={{ opacity: 1, y: 0 }}
