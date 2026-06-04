@@ -1,4 +1,5 @@
-# DeployX
+#                                                             DeployX
+<img width="2048" height="1728" alt="localhost_5173_" src="https://github.com/user-attachments/assets/df9b5c0e-94ee-44ae-a60d-48d0fb23b3d6" />
 
 DeployX is a local-first, decentralized auto-deployment platform (similar to Vercel/Netlify) featuring a high-performance React operator console, a repository uploader service, an asynchronous build worker pool, and a wildcard subdomain request router.
 
