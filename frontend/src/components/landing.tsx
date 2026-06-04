@@ -376,7 +376,7 @@ export function Landing() {
                           <input
                             readOnly
                             type="url"
-                            value={`http://${uploadId}.bharath.codes/index.html`}
+                            value={`http://${uploadId}.bharath.codes/`}
                             onClick={(e) => e.currentTarget.select()}
                             style={{
                               background: "rgba(0, 0, 0, 0.4)",
@@ -396,7 +396,7 @@ export function Landing() {
                         </div>
 
                         <motion.a
-                          href={`http://${uploadId}.bharath.codes/index.html`}
+                          href={`http://${uploadId}.bharath.codes/`}
                           target="_blank"
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.02 }}
