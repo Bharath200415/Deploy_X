@@ -46,7 +46,7 @@ export default function LandingFooter() {
         ))}
       </div>
       <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-faint)" }}>
-        VIT Bhopal · 23BCE10570
+        Built with loads of caffeine
       </span>
     </footer>
   );

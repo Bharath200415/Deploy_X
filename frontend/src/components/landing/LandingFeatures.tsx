@@ -158,17 +158,17 @@ export default function LandingFeatures() {
       desc: "Production-grade process management with PM2 and reverse proxy routing through Nginx on AWS EC2.",
       delay: 0.36,
     },
-    {
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" style={{ width: 20, height: 20 }} stroke="currentColor" strokeWidth="1.4">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M12 8v4l3 3" />
-        </svg>
-      ),
-      title: "Custom Domain Ready",
-      desc: "Subdomain routing architecture supports custom domain mapping for production deployments under any domain.",
-      delay: 0.42,
-    },
+    // {
+    //   icon: (
+    //     <svg viewBox="0 0 24 24" fill="none" style={{ width: 20, height: 20 }} stroke="currentColor" strokeWidth="1.4">
+    //       <circle cx="12" cy="12" r="9" />
+    //       <path d="M12 8v4l3 3" />
+    //     </svg>
+    //   ),
+    //   title: "Custom Domain Ready",
+    //   desc: "Subdomain routing architecture supports custom domain mapping for production deployments under any domain.",
+    //   delay: 0.42,
+    // },
     {
       icon: (
         <svg viewBox="0 0 24 24" fill="none" style={{ width: 20, height: 20 }} stroke="currentColor" strokeWidth="1.4">

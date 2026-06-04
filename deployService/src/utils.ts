@@ -1,7 +1,7 @@
 import { spawn } from "child_process";
 import path from "path";
 
-export function buildProject(id: string) {
+export function buildProject(id: string, onLog: (log: string) => void) {
     const projectDir = path.join(__dirname, `output/${id}`);
 
     return new Promise<void>((resolve, reject) => {
@@ -9,10 +9,18 @@ export function buildProject(id: string) {
 
         install.stdout?.on('data', data => {
             console.log('npm install stdout: ' + data);
+            const lines = data.toString().split('\n');
+            lines.forEach((line: string) => {
+                if (line.trim()) onLog(`[install] ${line.trim()}`);
+            });
         });
 
         install.stderr?.on('data', data => {
             console.log('npm install stderr: ' + data);
+            const lines = data.toString().split('\n');
+            lines.forEach((line: string) => {
+                if (line.trim()) onLog(`[install-err] ${line.trim()}`);
+            });
         });
 
         install.on('error', reject);
@@ -26,10 +34,18 @@ export function buildProject(id: string) {
 
             build.stdout?.on('data', data => {
                 console.log('npm run build stdout: ' + data);
+                const lines = data.toString().split('\n');
+                lines.forEach((line: string) => {
+                    if (line.trim()) onLog(`[build] ${line.trim()}`);
+                });
             });
 
             build.stderr?.on('data', data => {
                 console.log('npm run build stderr: ' + data);
+                const lines = data.toString().split('\n');
+                lines.forEach((line: string) => {
+                    if (line.trim()) onLog(`[build-err] ${line.trim()}`);
+                });
             });
 
             build.on('error', reject);

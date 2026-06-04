@@ -25,6 +25,8 @@ export function Ticker() {
         borderBottom: "1px solid var(--border)",
         padding: "14px 0",
         background: "rgba(255,255,255,0.012)",
+        maskImage: "linear-gradient(to right, transparent, #000 15%, #000 85%, transparent)",
+        WebkitMaskImage: "linear-gradient(to right, transparent, #000 15%, #000 85%, transparent)",
       }}
     >
       <div

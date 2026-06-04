@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import "./landing/landingmain.css";
 import LandingNav from "./landing/LandingNav";
@@ -45,7 +44,9 @@ export default function DeployXLanding() {
 
       {/* ═══ Rail + Ticker ═══ */}
       <RailLine />
-      <Ticker />
+      <RailContainer>
+        <Ticker />
+      </RailContainer>
 
       {/* ═══ FEATURES ═══ */}
       <RailLine />

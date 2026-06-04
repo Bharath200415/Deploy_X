@@ -20,6 +20,7 @@ export function PipelineSteps() {
               border: "1px solid var(--border-card)",
               background: "var(--bg-card)",
               padding: 6,
+              minHeight:192
             }}
           >
             <div
@@ -29,6 +30,7 @@ export function PipelineSteps() {
                 background: "var(--bg-card-inner)",
                 padding: 20,
                 height: "100%",
+                minHeight:176
               }}
             >
               <div
@@ -98,7 +100,7 @@ export default function LandingHowItWorks() {
       <PipelineSteps />
 
       {/* Architecture detail cards */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, marginTop: 48 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 12, marginTop: 48 }}>
         {[
           {
             title: "Deploy Service",

@@ -204,7 +204,7 @@ export default function LandingHero() {
                 textWrap: "balance",
               }}
             >
-              Deploy every frontend app
+              Deploy Frontend Apps
               <br />
               <span style={{ position: "relative", display: "inline-block", whiteSpace: "nowrap" }}>
                 <span
@@ -214,9 +214,9 @@ export default function LandingHero() {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  feel{" "}
+                  in{" "}
                 </span>
-                <span style={{ color: "var(--primary)" }}>intentional.</span>
+                <span style={{ color: "var(--primary)" }}>Seconds</span>
                 {/* Underline SVG */}
                 <svg
                   aria-hidden="true"
@@ -302,7 +302,7 @@ export default function LandingHero() {
               </svg>
             </Link>
             <motion.a
-              href="https://github.com"
+              href="https://github.com/bharath200415/deploy_X"
               target="_blank"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}

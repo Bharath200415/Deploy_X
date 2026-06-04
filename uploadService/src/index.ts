@@ -83,6 +83,20 @@ app.get("/status",async(req,res)=>{
     })
 })
 
+app.get("/logs", async (req, res) => {
+    const id = req.query.id;
+    if (!id) {
+        return res.status(400).json({ error: "Missing deployment id" });
+    }
+    try {
+        const logs = await subscriber.lRange(`logs:${id}`, 0, -1);
+        res.json({ logs });
+    } catch (err: any) {
+        console.error("Error reading logs from Redis", err);
+        res.status(500).json({ error: "Internal server error reading logs" });
+    }
+});
+
 
 async function start() {
     try {

@@ -113,65 +113,68 @@ export function ComparisonTable() {
   };
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 18 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      style={{
-        border: "1px solid var(--border)",
-        borderRadius: 8,
-        overflow: "hidden",
-        background: "rgba(255,255,255,0.02)",
-        backdropFilter: "blur(8px)",
-      }}
-    >
-      {/* Header */}
-      <div
+    <div style={{ width: "100%", overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 18 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(10rem,1.4fr) repeat(3, minmax(4.5rem, 0.55fr))",
-          borderBottom: "1px solid var(--border-card)",
-          background: "rgba(255,255,255,0.025)",
-          textAlign: "center",
-          fontFamily: "var(--font-mono)",
-          fontSize: 10,
-          letterSpacing: "0.2em",
-          color: "var(--text-faint)",
-          textTransform: "uppercase",
+          border: "1px solid var(--border)",
+          borderRadius: 8,
+          overflow: "hidden",
+          background: "rgba(255,255,255,0.02)",
+          backdropFilter: "blur(8px)",
+          minWidth: "640px",
         }}
       >
-        <div style={{ padding: "12px 16px", textAlign: "left" }}>Feature</div>
-        <div style={{ padding: "12px 12px", background: "var(--primary-glow)", color: "var(--primary)" }}>DeployX</div>
-        <div style={{ padding: "12px 12px" }}>Manual</div>
-        <div style={{ padding: "12px 12px" }}>Other PaaS</div>
-      </div>
-      {/* Rows */}
-      {rows.map((row, i) => (
-        <motion.div
-          key={row.feature}
-          initial={{ opacity: 0, x: -8 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.35, delay: 0.12 + i * 0.05 }}
+        {/* Header */}
+        <div
           style={{
             display: "grid",
             gridTemplateColumns: "minmax(10rem,1.4fr) repeat(3, minmax(4.5rem, 0.55fr))",
-            borderBottom: i < rows.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
+            borderBottom: "1px solid var(--border-card)",
+            background: "rgba(255,255,255,0.025)",
+            textAlign: "center",
+            fontFamily: "var(--font-mono)",
+            fontSize: 10,
+            letterSpacing: "0.2em",
+            color: "var(--text-faint)",
+            textTransform: "uppercase",
           }}
         >
-          <div style={{ padding: "12px 16px", fontSize: 13, fontWeight: 500, color: "var(--text-secondary)" }}>{row.feature}</div>
-          <div style={{ padding: "12px 12px", textAlign: "center", background: "rgba(192,132,252,0.03)" }}>
-            <CellIcon value={row.deployx} />
-          </div>
-          <div style={{ padding: "12px 12px", textAlign: "center" }}>
-            <CellIcon value={row.manual} />
-          </div>
-          <div style={{ padding: "12px 12px", textAlign: "center" }}>
-            <CellIcon value={row.others} />
-          </div>
-        </motion.div>
-      ))}
-    </motion.div>
+          <div style={{ padding: "12px 16px", textAlign: "left" }}>Feature</div>
+          <div style={{ padding: "12px 12px", background: "var(--primary-glow)", color: "var(--primary)" }}>DeployX</div>
+          <div style={{ padding: "12px 12px" }}>Manual</div>
+          <div style={{ padding: "12px 12px" }}>Other PaaS</div>
+        </div>
+        {/* Rows */}
+        {rows.map((row, i) => (
+          <motion.div
+            key={row.feature}
+            initial={{ opacity: 0, x: -8 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.35, delay: 0.12 + i * 0.05 }}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(10rem,1.4fr) repeat(3, minmax(4.5rem, 0.55fr))",
+              borderBottom: i < rows.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
+            }}
+          >
+            <div style={{ padding: "12px 16px", fontSize: 13, fontWeight: 500, color: "var(--text-secondary)" }}>{row.feature}</div>
+            <div style={{ padding: "12px 12px", textAlign: "center", background: "rgba(192,132,252,0.03)" }}>
+              <CellIcon value={row.deployx} />
+            </div>
+            <div style={{ padding: "12px 12px", textAlign: "center" }}>
+              <CellIcon value={row.manual} />
+            </div>
+            <div style={{ padding: "12px 12px", textAlign: "center" }}>
+              <CellIcon value={row.others} />
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
   );
 }
 
