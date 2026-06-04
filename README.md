@@ -82,7 +82,23 @@ flowchart TD
 
 ---
 
-### Step 1: Storage Environment Configuration
+### Step 1: Start Redis Queue (Docker)
+
+To run a Redis instance locally for the build queue and logs caching, run:
+
+```bash
+docker run -d --name deployx-redis -p 6379:6379 redis:latest
+```
+
+To interact with the running Redis instance (cli mode):
+
+```bash
+docker exec -it deployx-redis redis-cli
+```
+
+---
+
+### Step 2: Storage Environment Configuration
 
 You must create a `.env` file in the following service folders:
 - `uploadService/.env`
@@ -101,7 +117,7 @@ REDIS_URL=redis://127.0.0.1:6379
 
 ---
 
-### Step 2: Boot Backend Services
+### Step 3: Boot Backend Services
 
 Open three terminal sessions to run each backend component:
 
@@ -134,7 +150,7 @@ node dist/index.js
 
 ---
 
-### Step 3: Run the Frontend App
+### Step 4: Run the Frontend App
 
 1. Create a `frontend/.env` file if you want to override the default upload base URL (optional):
    ```env
@@ -157,4 +173,4 @@ node dist/index.js
   - `http://localhost:3000` -> Upload Service Endpoint
   - `http://localhost:3001` -> Subdomain Proxy Router
   - `http://localhost:5173` -> Developer Console UI
-- **Wildcard Subdomains**: In production, configure Nginx to route `*.yourdomain.com` to port `3001`. For local testing, requests containing host headers like `http://<id>.localhost:3001` will serve the mapped deployment matching the ID prefix.
+- **Wildcard Subdomains**: In production, configure Nginx to route `*.yourdomain.com` to port `3001`. For local testing, requests containing host headers like `http://<id>.localhost:3001` will serve the mapped deployment matching the ID prefix.`
