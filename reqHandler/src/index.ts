@@ -15,7 +15,7 @@ const s3 = new S3({accessKeyId,secretAccessKey,endpoint})
 
 const app = express();
 
-app.get("/*path", async (req, res) => {
+app.get("*", async (req, res) => {
     const host = req.hostname;
 
     const id = host.split(".")[0];
