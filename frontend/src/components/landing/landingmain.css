@@ -101,3 +101,59 @@ body.landing-main-active ::selection {
     box-shadow: 0 0 0 4px rgba(74, 222, 128, 0);
   }
 }
+
+/* ─── Responsive visibility helpers ─────────────────────────────────────────── */
+.desktop-only {
+  display: flex !important;
+}
+
+.mobile-only {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: flex !important;
+  }
+
+  .hero-cta-btn {
+    flex: 1 1 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* ─── Responsive layout adjustments ─────────────────────────────────────────── */
+
+/* Large tablets and smaller desktops */
+@media (max-width: 1024px) {
+  .landingmain-container {
+    --section-padding-x: clamp(16px, 3vw, 32px);
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  /* Footer stacks vertically on mobile */
+  .landingmain-container footer {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 20px !important;
+    text-align: left;
+  }
+
+  /* Comparison table scroll hint */
+  .landingmain-container [style*="overflowX"] {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .landingmain-container {
+    font-size: 14px;
+  }
+}

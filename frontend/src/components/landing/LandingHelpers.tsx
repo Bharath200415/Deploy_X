@@ -31,11 +31,14 @@ export const RailLine = () => (
     style={{
       position: "relative",
       height: 1,
-      width: "99.6vw",
+      width: "100%",
+      maxWidth: "100vw",
       marginLeft: "calc(50% - 50vw)",
+      marginRight: "calc(50% - 50vw)",
       backgroundImage: "repeating-linear-gradient(to right, var(--rail) 0px, var(--rail) 6px, transparent 6px, transparent 14px)",
       backgroundSize: "100% 1px",
       backgroundRepeat: "no-repeat",
+      overflow: "hidden",
     }}
   />
 );
@@ -48,7 +51,7 @@ export const RailContainer = ({ children, style = {} }: any) => (
       position: "relative",
       maxWidth: "76rem",
       margin: "0 auto",
-      width: "calc(100% - 2rem)",
+      width: "calc(100% - clamp(1rem, 2vw, 2rem))",
       backgroundImage:
         "repeating-linear-gradient(to bottom, var(--rail) 0px, var(--rail) 6px, transparent 6px, transparent 14px), repeating-linear-gradient(to bottom, var(--rail) 0px, var(--rail) 6px, transparent 6px, transparent 14px)",
       backgroundSize: "1px 100%, 1px 100%",

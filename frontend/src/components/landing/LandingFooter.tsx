@@ -5,12 +5,12 @@ export default function LandingFooter() {
     <footer
       style={{
         borderTop: "1px solid var(--border)",
-        padding: "40px clamp(20px, 4vw, 48px)",
+        padding: "40px clamp(16px, 4vw, 48px)",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
         flexWrap: "wrap",
-        gap: 16,
+        gap: 20,
         maxWidth: "76rem",
         margin: "0 auto",
       }}
@@ -25,7 +25,7 @@ export default function LandingFooter() {
           by bharath.codes
         </span>
       </div>
-      <div style={{ display: "flex", gap: 24 }}>
+      <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
         {["GitHub", "Docs", "Architecture", "Contact"].map((item) => (
           <a
             key={item}

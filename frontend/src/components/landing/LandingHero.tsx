@@ -81,7 +81,7 @@ export function Terminal() {
           </div>
 
           {/* Terminal content */}
-          <div style={{ padding: "20px 20px 28px", minHeight: 260 }}>
+          <div style={{ padding: "clamp(12px, 3vw, 20px) clamp(12px, 3vw, 20px) clamp(16px, 3vw, 28px)", minHeight: "clamp(180px, 30vw, 260px)" }}>
             {/* Grid background overlay */}
             <div
               style={{
@@ -101,7 +101,7 @@ export function Terminal() {
                 transition={{ duration: 0.25 }}
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: 12.5,
+                  fontSize: "clamp(10px, 2vw, 12.5px)",
                   color: line.color,
                   lineHeight: 2.1,
                   position: "relative",
@@ -115,7 +115,7 @@ export function Terminal() {
               <span
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: 12.5,
+                  fontSize: "clamp(10px, 2vw, 12.5px)",
                   color: "var(--text-muted)",
                   animation: "blink 1s infinite",
                 }}
@@ -277,13 +277,16 @@ export default function LandingHero() {
               alignItems: "center",
               justifyContent: "center",
               gap: 12,
+              width: "100%",
             }}
           >
             <Link
               to="/deploy"
+              className="hero-cta-btn"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
+                justifyContent: "center",
                 gap: 8,
                 borderRadius: 8,
                 background: "var(--primary)",
@@ -306,9 +309,11 @@ export default function LandingHero() {
               target="_blank"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
+              className="hero-cta-btn"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
+                justifyContent: "center",
                 gap: 8,
                 borderRadius: 8,
                 border: "1px solid var(--border)",
