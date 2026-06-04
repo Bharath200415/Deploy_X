@@ -1,13 +1,15 @@
+import 'dotenv/config';
 import { createClient } from 'redis';
 import { copyFinalDist, downloadS3Folder } from './aws';
 import { buildProject } from './utils';
 
-const subscriber = createClient();
-const publisher= createClient();
-publisher.connect();
+const redURL = process.env.REDIS_URL ?? 'redis://127.0.0.1:6379';
+const subscriber = createClient({ url: redURL });
+const publisher = createClient({ url: redURL });
 
 async function main(){
     await subscriber.connect();
+    await publisher.connect();
     while (true){
         const response = await subscriber.brPop('build-queue', 0);
         console.log(response);

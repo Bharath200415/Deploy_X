@@ -8,17 +8,22 @@ import { getAllFiles } from "./file";
 import { uploadFile } from "./aws";
 import {createClient} from "redis";
 
-const redURL= process.env.REDIS_URL ?? 'redis://127.0.0.1:6379';
+const redURL = process.env.REDIS_URL ?? 'redis://127.0.0.1:6379';
 
-const subscriber = createClient();
-subscriber.connect();
+const subscriber = createClient({
+    url: redURL
+});
 
 const publisher = createClient({
     url: redURL
 });
 
+subscriber.on("error", err =>
+    console.error("Redis Subscriber Error:", err)
+);
+
 publisher.on("error", err =>
-    console.error("Redis Error:", err)
+    console.error("Redis Publisher Error:", err)
 );
 
 const app = express();
@@ -27,7 +32,7 @@ app.use(express.json());
 console.log(__dirname);
 
 app.post("/deploy",async(req,res)=>{
-    const repoURL = req.body.repoURL;
+    const repoURL = req.body.repoURL || req.body.repoUrl;
 
     const id = generate(); //to generate a random id and add the cloned repo
     
@@ -64,8 +69,9 @@ app.post("/deploy",async(req,res)=>{
 
 
     res.json({
-        message:`repo url logged with id: ${id}`
-    })
+        id,
+        message: `repo url logged with id: ${id}`
+    });
 })
 
 app.get("/health",(req,res)=>{
@@ -100,12 +106,13 @@ app.get("/logs", async (req, res) => {
 
 async function start() {
     try {
-        const redURL = process.env.REDIS_URL ?? 'redis://127.0.0.1:6379';
-        // connect publisher with provided REDIS_URL or default
         if (!publisher.isOpen) {
             await publisher.connect();
         }
-        app.listen(3000, ()=> console.log('Server listening on port 3000'));
+        if (!subscriber.isOpen) {
+            await subscriber.connect();
+        }
+        app.listen(3000, () => console.log('Server listening on port 3000'));
     } catch (err) {
         console.error('Startup error:', err);
         process.exit(1);

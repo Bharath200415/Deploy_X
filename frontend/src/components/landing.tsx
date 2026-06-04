@@ -6,14 +6,20 @@ import "./landing/landingmain.css";
 import LandingNav from "./landing/LandingNav";
 import { RailLine, RailContainer, FadeUp, SectionLabel, CornerBracket } from "./landing/LandingHelpers";
 
-const BACKEND_UPLOAD_URL = "http://localhost:3000";
+const BACKEND_UPLOAD_URL =
+  typeof window !== "undefined" && window.location.hostname.endsWith("bharath.codes")
+    ? "https://api.deployx.bharath.codes"
+    : "http://localhost:3000";
 
 export function Landing() {
   const [repoUrl, setRepoUrl] = useState("");
   const [uploadId, setUploadId] = useState("");
   const [uploading, setUploading] = useState(false);
   const [deployed, setDeployed] = useState(false);
+  const [logs, setLogs] = useState<string[]>([]);
+  const [status, setStatus] = useState<string>("");
   const intervalRef = useRef<any>(null);
+  const logsEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.body.classList.add("landing-main-active");
@@ -33,11 +39,19 @@ export function Landing() {
     };
   }, []);
 
+  useEffect(() => {
+    if (logsEndRef.current) {
+      logsEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [logs]);
+
   const handleDeploy = async () => {
     if (!repoUrl.trim()) return;
     setUploading(true);
     setDeployed(false);
     setUploadId("");
+    setLogs([]);
+    setStatus("");
 
     try {
       const res = await axios.post(`${BACKEND_UPLOAD_URL}/deploy`, {
@@ -45,14 +59,29 @@ export function Landing() {
       });
       const id = res.data.id;
       setUploadId(id);
-      setUploading(false);
 
       const interval = setInterval(async () => {
         try {
           const response = await axios.get(`${BACKEND_UPLOAD_URL}/status?id=${id}`);
-          if (response.data.status === "deployed") {
+          const currentStatus = response.data.status;
+          setStatus(currentStatus);
+
+          try {
+            const logsResponse = await axios.get(`${BACKEND_UPLOAD_URL}/logs?id=${id}`);
+            if (logsResponse.data && logsResponse.data.logs) {
+              setLogs(logsResponse.data.logs);
+            }
+          } catch (logErr) {
+            console.error("Error checking logs:", logErr);
+          }
+
+          if (currentStatus === "deployed") {
             clearInterval(interval);
             setDeployed(true);
+            setUploading(false);
+          } else if (currentStatus === "failed") {
+            clearInterval(interval);
+            setUploading(false);
           }
         } catch (err) {
           console.error("Error checking status:", err);
@@ -125,8 +154,8 @@ export function Landing() {
                         type="url"
                         onChange={(e) => setRepoUrl(e.target.value)}
                         value={repoUrl}
-                        disabled={uploading || uploadId !== ""}
-                        placeholder="https://github.com/username/repo"
+                         disabled={uploading || (uploadId !== "" && status !== "failed")}
+                         placeholder="https://github.com/username/repo"
                         style={{
                           background: "rgba(0, 0, 0, 0.4)",
                           border: "1px solid var(--border)",
@@ -150,24 +179,32 @@ export function Landing() {
                     </div>
 
                     <motion.button
-                      whileHover={uploading || uploadId !== "" ? {} : { scale: 1.02 }}
-                      whileTap={uploading || uploadId !== "" ? {} : { scale: 0.98 }}
+                      whileHover={uploading || (uploadId !== "" && status !== "failed") ? {} : { scale: 1.02 }}
+                      whileTap={uploading || (uploadId !== "" && status !== "failed") ? {} : { scale: 0.98 }}
                       onClick={handleDeploy}
-                      disabled={uploading || uploadId !== "" || !repoUrl.trim()}
+                      disabled={uploading || (uploadId !== "" && status !== "failed") || !repoUrl.trim()}
                       style={{
-                        background: uploading || uploadId !== "" || !repoUrl.trim() ? "rgba(255,255,255,0.04)" : "var(--primary)",
-                        color: uploading || uploadId !== "" || !repoUrl.trim() ? "var(--text-muted)" : "#000",
+                        background: uploading || (uploadId !== "" && status !== "failed") || !repoUrl.trim() ? "rgba(255,255,255,0.04)" : "var(--primary)",
+                        color: uploading || (uploadId !== "" && status !== "failed") || !repoUrl.trim() ? "var(--text-muted)" : "#000",
                         border: "none",
                         borderRadius: 8,
                         padding: "14px",
                         fontSize: 14,
                         fontWeight: 600,
                         fontFamily: "var(--font-body)",
-                        cursor: uploading || uploadId !== "" || !repoUrl.trim() ? "not-allowed" : "pointer",
+                        cursor: uploading || (uploadId !== "" && status !== "failed") || !repoUrl.trim() ? "not-allowed" : "pointer",
                         transition: "background 0.2s, color 0.2s",
                       }}
                     >
-                      {uploading ? "Uploading code..." : uploadId && !deployed ? "Deploying app..." : deployed ? "Deployed" : "Deploy Now"}
+                      {uploading 
+                        ? "Uploading code..." 
+                        : uploadId && status === "failed"
+                        ? "Deployment Failed (Try Again)"
+                        : uploadId && !deployed 
+                        ? "Deploying app..." 
+                        : deployed 
+                        ? "Deployed" 
+                        : "Deploy Now"}
                     </motion.button>
                   </div>
                 </div>
@@ -223,7 +260,7 @@ export function Landing() {
                       </div>
 
                       {/* Terminal lines */}
-                      <div style={{ padding: 16, display: "flex", flexDirection: "column", gap: 8 }}>
+                      <div style={{ padding: 16, display: "flex", flexDirection: "column", gap: 8, maxHeight: "280px", overflowY: "auto" }}>
                         <p style={{ fontFamily: "var(--font-mono)", fontSize: "clamp(10px, 2.5vw, 12px)", color: "var(--text-secondary)", wordBreak: "break-all" }}>
                           $ deployx deploy --repo {repoUrl}
                         </p>
@@ -237,7 +274,24 @@ export function Landing() {
                             ✦ Code uploaded. Build Job ID: <span style={{ color: "var(--primary)" }}>{uploadId}</span>
                           </p>
                         )}
-                        {uploadId && !deployed && (
+                        
+                        {logs.map((log, index) => {
+                          let color = "var(--text-secondary)";
+                          if (log.includes("✖") || log.toLowerCase().includes("failed") || log.toLowerCase().includes("err")) {
+                            color = "#f87171"; // soft red
+                          } else if (log.includes("✓") || log.toLowerCase().includes("successfully") || log.toLowerCase().includes("live")) {
+                            color = "var(--green)";
+                          } else if (log.includes("✦")) {
+                            color = "var(--primary-dim)";
+                          }
+                          return (
+                            <p key={index} style={{ fontFamily: "var(--font-mono)", fontSize: "clamp(10px, 2.5vw, 12px)", color, wordBreak: "break-all", whiteSpace: "pre-wrap" }}>
+                              {log}
+                            </p>
+                          );
+                        })}
+
+                        {uploadId && !deployed && status !== "failed" && logs.length === 0 && (
                           <p style={{ fontFamily: "var(--font-mono)", fontSize: "clamp(10px, 2.5vw, 12px)", color: "#a78bfa" }}>
                             ✦ Enqueued in Redis. Waiting for worker build...
                           </p>
@@ -252,6 +306,7 @@ export function Landing() {
                             </p>
                           </>
                         )}
+                        <div ref={logsEndRef} />
                       </div>
                     </div>
                   </div>
@@ -321,7 +376,7 @@ export function Landing() {
                           <input
                             readOnly
                             type="url"
-                            value={`http://${uploadId}.dev.100xdevs.com:3001/index.html`}
+                            value={`http://${uploadId}.bharath.codes/index.html`}
                             onClick={(e) => e.currentTarget.select()}
                             style={{
                               background: "rgba(0, 0, 0, 0.4)",
