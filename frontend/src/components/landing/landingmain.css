@@ -1,0 +1,62 @@
+/* Custom variables for the landing main theme, only active when landing page is mounted */
+.landing-main-active {
+  --bg: #09090b;
+  --bg-card: rgba(255,255,255,0.022);
+  --bg-card-inner: rgba(255,255,255,0.035);
+  --bg-card-hover: rgba(255,255,255,0.055);
+  --border: rgba(255,255,255,0.08);
+  --border-hover: rgba(255,255,255,0.16);
+  --border-card: rgba(255,255,255,0.06);
+  --primary: #c084fc;
+  --primary-dim: rgba(192,132,252,0.55);
+  --primary-glow: rgba(192,132,252,0.08);
+  --primary-subtle: rgba(192,132,252,0.12);
+  --green: #4ade80;
+  --text-primary: #fafafa;
+  --text-secondary: rgba(250,250,250,0.7);
+  --text-muted: rgba(250,250,250,0.4);
+  --text-faint: rgba(250,250,250,0.25);
+  --rail: rgba(250,250,250,0.08);
+  --font-display: 'Newsreader', serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-body: 'Sora', sans-serif;
+}
+
+/* Scoped selector for general elements */
+body.landing-main-active {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbars scoped to the active class */
+body.landing-main-active ::-webkit-scrollbar { width: 4px; }
+body.landing-main-active ::-webkit-scrollbar-track { background: var(--bg); }
+body.landing-main-active ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
+
+/* Apply selection stylings only when landing page is active */
+body.landing-main-active ::selection { background: var(--primary); color: #000; }
+
+/* Box-sizing and local resets only for elements inside our landing container */
+.landingmain-container * {
+  box-sizing: border-box;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes landing-draw {
+  from { stroke-dashoffset: 400; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.6; box-shadow: 0 0 0 0 rgba(74,222,128,0.4); }
+  50% { opacity: 1; box-shadow: 0 0 0 4px rgba(74,222,128,0); }
+}
