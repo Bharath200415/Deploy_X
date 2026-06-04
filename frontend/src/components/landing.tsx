@@ -302,7 +302,7 @@ export function Landing() {
                               ✓ Build finished. Deployed successfully to production!
                             </p>
                             <p style={{ fontFamily: "var(--font-mono)", fontSize: "clamp(10px, 2.5vw, 12px)", color: "var(--green)" }}>
-                              ↗ URL: http://{uploadId}.bharath.codes/index.html
+                              ↗ URL: http://{uploadId}.bharath.codes/
                             </p>
                           </>
                         )}
