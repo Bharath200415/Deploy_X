@@ -137,6 +137,7 @@ body.landing-main-active ::selection {
 
 /* Tablets */
 @media (max-width: 768px) {
+
   /* Footer stacks vertically on mobile */
   .landingmain-container footer {
     flex-direction: column !important;

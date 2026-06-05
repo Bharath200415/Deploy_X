@@ -95,7 +95,10 @@ export function Landing() {
   };
 
   return (
-    <div className="landingmain-container" style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text-primary)", display: "flex", flexDirection: "column" }}>
+    <div className="landingmain-container" style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text-primary)", display: "flex", flexDirection: "column"           ,backgroundImage:
+            "radial-gradient(circle at 1px 1px, rgba(206, 159, 253, 0.49) 0.62px, transparent 0)",
+          backgroundSize: "25px 25px",
+          backgroundRepeat: "repeat",}}>
       <LandingNav />
 
       <div style={{ opacity: 0.72, filter: "blur(14px)", transform: "translateY(18px)" }}>
@@ -154,8 +157,8 @@ export function Landing() {
                         type="url"
                         onChange={(e) => setRepoUrl(e.target.value)}
                         value={repoUrl}
-                         disabled={uploading || (uploadId !== "" && status !== "failed")}
-                         placeholder="https://github.com/username/repo"
+                        disabled={uploading || (uploadId !== "" && status !== "failed")}
+                        placeholder="https://github.com/username/repo"
                         style={{
                           background: "rgba(0, 0, 0, 0.4)",
                           border: "1px solid var(--border)",
@@ -196,15 +199,15 @@ export function Landing() {
                         transition: "background 0.2s, color 0.2s",
                       }}
                     >
-                      {uploading 
-                        ? "Uploading code..." 
+                      {uploading
+                        ? "Uploading code..."
                         : uploadId && status === "failed"
-                        ? "Deployment Failed (Try Again)"
-                        : uploadId && !deployed 
-                        ? "Deploying app..." 
-                        : deployed 
-                        ? "Deployed" 
-                        : "Deploy Now"}
+                          ? "Deployment Failed (Try Again)"
+                          : uploadId && !deployed
+                            ? "Deploying app..."
+                            : deployed
+                              ? "Deployed"
+                              : "Deploy Now"}
                     </motion.button>
                   </div>
                 </div>
@@ -274,7 +277,7 @@ export function Landing() {
                             ✦ Code uploaded. Build Job ID: <span style={{ color: "var(--primary)" }}>{uploadId}</span>
                           </p>
                         )}
-                        
+
                         {logs.map((log, index) => {
                           let color = "var(--text-secondary)";
                           if (log.includes("✖") || log.toLowerCase().includes("failed") || log.toLowerCase().includes("err")) {

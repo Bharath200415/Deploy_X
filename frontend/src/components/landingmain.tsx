@@ -14,7 +14,7 @@ import { RailLine, RailContainer, FadeUp, SectionLabel } from "./landing/Landing
 export default function DeployXLanding() {
   useEffect(() => {
     document.body.classList.add("landing-main-active");
-    
+
     // Inject Newsreader display font dynamically to avoid global layout shift
     const fontLink = document.createElement("link");
     fontLink.rel = "stylesheet";
@@ -29,7 +29,13 @@ export default function DeployXLanding() {
   }, []);
 
   return (
-    <div className="landingmain-container" style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text-primary)" }}>
+    <div className="landingmain-container " style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text-primary)"
+          ,backgroundImage:
+            "radial-gradient(circle at 1px 1px, rgba(206, 159, 253, 0.49) 0.62px, transparent 0)",
+          backgroundSize: "25px 25px",
+          backgroundRepeat: "repeat",
+        }}>
+      
       <LandingNav />
 
       {/* ═══ Blurred rail line under nav ═══ */}
