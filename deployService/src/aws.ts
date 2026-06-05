@@ -47,12 +47,12 @@ export async function downloadS3Folder(prefix: string) {
     console.log("Downloaded all files");
 }
 
-export function copyFinalDist(id: string) {
+export async function copyFinalDist(id: string) {
     const folderPath = path.join(__dirname, `output/${id}/dist`);
 
     const allFiles = getAllFiles(folderPath);
 
-    allFiles.forEach(async (file) => {
+    const uploadPromises = allFiles.map(async (file) => {
         const relativePath = path
             .relative(folderPath, file)
             .replace(/\\/g, "/");
@@ -62,6 +62,27 @@ export function copyFinalDist(id: string) {
             file
         );
     });
+
+    await Promise.all(uploadPromises);
+}
+
+export async function copyStaticFiles(id: string) {
+    const folderPath = path.join(__dirname, `output/${id}`);
+
+    const allFiles = getAllFiles(folderPath);
+
+    const uploadPromises = allFiles.map(async (file) => {
+        const relativePath = path
+            .relative(folderPath, file)
+            .replace(/\\/g, "/");
+
+        await uploadFile(
+            `dist/${id}/${relativePath}`,
+            file
+        );
+    });
+
+    await Promise.all(uploadPromises);
 }
 
 const getAllFiles = (folderPath: string) => {
