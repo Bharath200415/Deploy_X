@@ -51,7 +51,7 @@ export default function LandingNav() {
             transition={{ duration: 0.5, delay: 0.15, type: "spring" }}
             style={{ display: "inline-flex" }}
           >
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            {/* <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
               <rect width="28" height="28" rx="7" fill="var(--primary)" />
               <path
                 d="M7 14L11 18L21 8"
@@ -60,7 +60,28 @@ export default function LandingNav() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
-            </svg>
+            </svg> */}
+<svg width="32" height="32" viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1000" height="1000" rx="118" fill="#C084FC"/>
+<path d="M103 543.626C282.622 665.324 335.773 721.493 487.988 832.074C585.02 727.929 621.388 664.154 678.727 543.626C515.04 543.626 549.846 543.626 390.863 543.626C231.881 543.626 262.924 543.626 103 543.626Z" fill="black"/>
+<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 613.798 462.409)" fill="black"/>
+<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 515.408 462.409)" fill="black"/>
+<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 417.019 462.409)" fill="black"/>
+<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 318.629 462.409)" fill="black"/>
+<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 220.239 462.409)" fill="black"/>
+<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 272.329 387.17)" fill="black"/>
+<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 370.718 387.17)" fill="black"/>
+<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 324.417 311.932)" fill="black"/>
+<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 469.107 387.17)" fill="black"/>
+<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 567.497 387.17)" fill="black"/>
+<path d="M884.81 467.427C889.899 471.231 890.196 478.756 885.422 482.949L487.987 832.075L487.752 190.609C487.749 182.374 497.143 177.665 503.739 182.595L884.81 467.427Z" fill="black"/>
+<path d="M746.05 483.842L571.758 637.818L571.801 352.848L746.05 483.842Z" fill="#C084FC"/>
+</svg>
+
+
+
+
+
           </motion.span>
           <span
             style={{
