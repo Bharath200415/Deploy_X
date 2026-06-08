@@ -76,7 +76,7 @@ export default function LandingTechStack() {
               fontFamily: "var(--font-body)",
             }}
           >
-            Built on battle-tested tech.
+            Powered by Modern Infrastructure.
           </h2>
         </div>
       </FadeUp>

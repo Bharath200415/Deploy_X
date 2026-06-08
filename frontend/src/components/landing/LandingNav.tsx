@@ -61,22 +61,22 @@ export default function LandingNav() {
                 strokeLinejoin="round"
               />
             </svg> */}
-<svg width="32" height="32" viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="1000" height="1000" rx="118" fill="#C084FC"/>
-<path d="M103 543.626C282.622 665.324 335.773 721.493 487.988 832.074C585.02 727.929 621.388 664.154 678.727 543.626C515.04 543.626 549.846 543.626 390.863 543.626C231.881 543.626 262.924 543.626 103 543.626Z" fill="black"/>
-<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 613.798 462.409)" fill="black"/>
-<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 515.408 462.409)" fill="black"/>
-<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 417.019 462.409)" fill="black"/>
-<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 318.629 462.409)" fill="black"/>
-<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 220.239 462.409)" fill="black"/>
-<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 272.329 387.17)" fill="black"/>
-<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 370.718 387.17)" fill="black"/>
-<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 324.417 311.932)" fill="black"/>
-<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 469.107 387.17)" fill="black"/>
-<rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 567.497 387.17)" fill="black"/>
-<path d="M884.81 467.427C889.899 471.231 890.196 478.756 885.422 482.949L487.987 832.075L487.752 190.609C487.749 182.374 497.143 177.665 503.739 182.595L884.81 467.427Z" fill="black"/>
-<path d="M746.05 483.842L571.758 637.818L571.801 352.848L746.05 483.842Z" fill="#C084FC"/>
-</svg>
+            <svg width="32" height="32" viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="1000" height="1000" rx="118" fill="#C084FC" />
+              <path d="M103 543.626C282.622 665.324 335.773 721.493 487.988 832.074C585.02 727.929 621.388 664.154 678.727 543.626C515.04 543.626 549.846 543.626 390.863 543.626C231.881 543.626 262.924 543.626 103 543.626Z" fill="black" />
+              <rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 613.798 462.409)" fill="black" />
+              <rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 515.408 462.409)" fill="black" />
+              <rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 417.019 462.409)" fill="black" />
+              <rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 318.629 462.409)" fill="black" />
+              <rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 220.239 462.409)" fill="black" />
+              <rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 272.329 387.17)" fill="black" />
+              <rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 370.718 387.17)" fill="black" />
+              <rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 324.417 311.932)" fill="black" />
+              <rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 469.107 387.17)" fill="black" />
+              <rect width="86.8143" height="63.664" transform="matrix(-1 0 0 1 567.497 387.17)" fill="black" />
+              <path d="M884.81 467.427C889.899 471.231 890.196 478.756 885.422 482.949L487.987 832.075L487.752 190.609C487.749 182.374 497.143 177.665 503.739 182.595L884.81 467.427Z" fill="black" />
+              <path d="M746.05 483.842L571.758 637.818L571.801 352.848L746.05 483.842Z" fill="#C084FC" />
+            </svg>
 
 
 
@@ -100,6 +100,9 @@ export default function LandingNav() {
         <div
           className="desktop-only"
           style={{
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
             display: "flex",
             alignItems: "center",
             gap: 4,
@@ -142,8 +145,9 @@ export default function LandingNav() {
               display: "inline-flex",
               alignItems: "center",
               gap: 6,
+              border: "none",
               borderRadius: 6,
-              border: "1px solid var(--border)",
+              boxShadow: "0 32px 64px -16px #0006, 0 16px 32px -8px #0006, 0 8px 16px -4px #0004, 0 4px 8px -2px #0004, 0 -8px 16px -1px #0003, 0 2px 4px -1px #0004, 0 0 0 1px #000, inset 0 0 0 1px #ffffff14, inset 0 1px #fff3",
               padding: "7px 14px",
               fontSize: 12,
               fontWeight: 500,
@@ -153,11 +157,9 @@ export default function LandingNav() {
               fontFamily: "var(--font-body)",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "var(--border-hover)";
               e.currentTarget.style.color = "var(--text-primary)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "var(--border)";
               e.currentTarget.style.color = "var(--text-secondary)";
             }}
           >
@@ -172,18 +174,26 @@ export default function LandingNav() {
               display: "inline-flex",
               alignItems: "center",
               gap: 6,
+              border: "none",
               borderRadius: 6,
+              boxShadow: "0 32px 64px -16px #0006, 0 16px 32px -8px #0006, 0 8px 16px -4px #0004, 0 4px 8px -2px #0004, 0 -8px 16px -1px #0003, 0 2px 4px -1px #0004, 0 0 0 1px #000, inset 0 0 0 1px #e58efa14, inset 0 1px rgba(200, 153, 248, 0.94)",
               background: "var(--primary)",
               padding: "7px 14px",
               fontSize: 12,
               fontWeight: 500,
               color: "#000",
               textDecoration: "none",
-              transition: "opacity 0.2s",
+              transition: "all 0.2s ease",
               fontFamily: "var(--font-body)",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "#ac6ef4";
+              e.currentTarget.style.transform = "translateY(-2px)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "var(--primary)";
+              e.currentTarget.style.transform = "none";
+            }}
           >
             Start deploying
             <svg viewBox="0 0 16 16" fill="none" style={{ width: 14, height: 14 }}>
@@ -277,8 +287,9 @@ export default function LandingNav() {
                   alignItems: "center",
                   justifyContent: "center",
                   gap: 8,
-                  borderRadius: 8,
-                  border: "1px solid var(--border)",
+                  border: "none",
+                  borderRadius: 6,
+                  boxShadow: "0 32px 64px -16px #0006, 0 16px 32px -8px #0006, 0 8px 16px -4px #0004, 0 4px 8px -2px #0004, 0 -8px 16px -1px #0003, 0 2px 4px -1px #0004, 0 0 0 1px #000, inset 0 0 0 1px #ffffff14, inset 0 1px #fff3",
                   padding: "12px",
                   fontSize: 13,
                   fontWeight: 500,
@@ -300,7 +311,9 @@ export default function LandingNav() {
                   alignItems: "center",
                   justifyContent: "center",
                   gap: 8,
-                  borderRadius: 8,
+                  border: "none",
+                  borderRadius: 6,
+                  boxShadow: "0 32px 64px -16px #0006, 0 16px 32px -8px #0006, 0 8px 16px -4px #0004, 0 4px 8px -2px #0004, 0 -8px 16px -1px #0003, 0 2px 4px -1px #0004, 0 0 0 1px #000, inset 0 0 0 1px #e58efa14, inset 0 1px rgba(200, 153, 248, 0.94)",
                   background: "var(--primary)",
                   padding: "12px",
                   fontSize: 13,

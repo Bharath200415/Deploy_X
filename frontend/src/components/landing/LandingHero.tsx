@@ -151,7 +151,7 @@ export default function LandingHero() {
         >
           {/* Badge */}
           <motion.a
-            href="https://github.com"
+            href="https://github.com/bharath200415/Deploy_X"
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 8 }}
@@ -168,7 +168,7 @@ export default function LandingHero() {
               fontFamily: "var(--font-mono)",
               fontSize: 10,
               letterSpacing: "0.15em",
-              
+
               textDecoration: "none",
               color: "var(--text-secondary)",
               backdropFilter: "blur(4px)",
@@ -288,7 +288,9 @@ export default function LandingHero() {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: 8,
-                borderRadius: 8,
+                border: "none",
+                borderRadius: 6,
+                boxShadow: "0 32px 64px -16px #0006, 0 16px 32px -8px #0006, 0 8px 16px -4px #0004, 0 4px 8px -2px #0004, 0 -8px 16px -1px #0003, 0 2px 4px -1px #0004, 0 0 0 1px #000, inset 0 0 0 1px #e58efa14, inset 0 1px rgba(200, 153, 248, 0.94)",
                 background: "var(--primary)",
                 padding: "12px 24px",
                 fontSize: 14,
@@ -296,7 +298,15 @@ export default function LandingHero() {
                 color: "#000",
                 textDecoration: "none",
                 fontFamily: "var(--font-body)",
-                transition: "opacity 0.2s",
+                transition: "all 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#ac6ef4";
+                e.currentTarget.style.transform = "translateY(-2px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "#b781f5ff";
+                e.currentTarget.style.transform = "none";
               }}
             >
               Start deploying
@@ -315,8 +325,9 @@ export default function LandingHero() {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: 8,
-                borderRadius: 8,
-                border: "1px solid var(--border)",
+                border: "none",
+                borderRadius: 6,
+                boxShadow: "0 32px 64px -16px #0006, 0 16px 32px -8px #0006, 0 8px 16px -4px #0004, 0 4px 8px -2px #0004, 0 -8px 16px -1px #0003, 0 2px 4px -1px #0004, 0 0 0 1px #000, inset 0 0 0 1px #ffffff14, inset 0 1px #fff3",
                 background: "rgba(255,255,255,0.02)",
                 padding: "12px 24px",
                 fontSize: 14,

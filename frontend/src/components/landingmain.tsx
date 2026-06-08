@@ -149,7 +149,7 @@ export default function DeployXLanding() {
                 color: "#000",
                 border: "none",
                 borderRadius: 10,
-                padding: "16px 40px",
+                padding: "11px 25px",
                 fontSize: 15,
                 fontFamily: "var(--font-body)",
                 fontWeight: 600,
