@@ -3,7 +3,8 @@ DeployX is a local-first, decentralized auto-deployment platform (similar to Ver
 
 The platform is designed to clone Git repositories, automatically execute dependencies installation and build pipelines, stream logs line-by-line in real-time to a dashboard console, and route requests dynamically to compiled static assets from object storage.
 
-<img width="2048" height="1728" alt="localhost_5173_" src="https://github.com/user-attachments/assets/df9b5c0e-94ee-44ae-a60d-48d0fb23b3d6" />
+<img width="2048" height="1728" alt="deployx bharath codes_" src="https://github.com/user-attachments/assets/50aca914-99f7-4e2b-9b8b-ee10b32cefdd" />
+
 
 
 
