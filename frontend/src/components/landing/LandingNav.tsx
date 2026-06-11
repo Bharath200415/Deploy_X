@@ -13,7 +13,7 @@ export default function LandingNav() {
   }, []);
 
   return (
-    <div style={{ position: "sticky", top: 0, zIndex: 50, width: "100%", maxWidth: "83rem", margin: "0 auto" }}>
+    <div style={{ position: "sticky", top: 0, zIndex: 50, width: "100%" }}>
       <motion.nav
         initial={{ opacity: 0, y: -6 }}
         animate={{ opacity: 1, y: 0 }}
@@ -25,12 +25,17 @@ export default function LandingNav() {
           height: 64,
           alignItems: "center",
           justifyContent: "space-between",
-          borderBottom: `1px solid ${scrolled || isOpen ? "var(--border)" : "rgba(255,255,255,0.035)"}`,
-          background: scrolled || isOpen ? "rgba(9,9,11,0.92)" : "rgba(9,9,11,0.4)",
+          width: "100%",
+          maxWidth: "100%",
+          margin: "0 auto",
+          borderRadius: 0,
+          border: "none",
+          borderBottom: scrolled || isOpen ? "1px solid var(--border)" : "1px solid rgba(255,255,255,0.035)",
+          background: scrolled || isOpen ? "rgba(9,9,11,0.85)" : "rgba(9,9,11,0.15)",
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
           padding: "0 clamp(20px, 3vw, 48px)",
-          transition: "all 0.3s ease",
+          transition: "background 0.3s ease, border-color 0.3s ease",
         }}
       >
         {/* Logo */}

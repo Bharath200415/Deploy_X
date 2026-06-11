@@ -32,17 +32,39 @@ body.landing-main-active {
 }
 
 /* Scrollbars scoped to the active class */
+html.landing-main-active::-webkit-scrollbar,
 body.landing-main-active ::-webkit-scrollbar {
-  width: 4px;
+  width: 8px;
+  height: 8px;
 }
 
+html.landing-main-active::-webkit-scrollbar-track,
 body.landing-main-active ::-webkit-scrollbar-track {
-  background: var(--bg);
+  background: transparent;
 }
 
+html.landing-main-active::-webkit-scrollbar-thumb,
 body.landing-main-active ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 2px;
+  background: rgba(192, 132, 252, 0);
+  /* Transparent by default */
+  border-radius: 100px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background 0.3s ease;
+}
+
+html.landing-main-active.is-scrolling::-webkit-scrollbar-thumb,
+body.landing-main-active.is-scrolling ::-webkit-scrollbar-thumb {
+  background: rgba(192, 132, 252, 0.35);
+  /* Visible when scrolling */
+}
+
+html.landing-main-active::-webkit-scrollbar-thumb:hover,
+body.landing-main-active ::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+  /* Highlighted on hover */
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
 /* Apply selection stylings only when landing page is active */

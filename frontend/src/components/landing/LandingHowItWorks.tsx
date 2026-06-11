@@ -507,7 +507,7 @@ export function ArchitectureDiagram({
 
         {/* Worker Pool Inner Nodes */}
         <Node id="worker" x={575} y={345} width={180} height={65} title="Deploy Worker" subtext="Queue Consumer" icon={Icons.Worker} stepId="04" />
-        <Node id="shell" x={575} y={505} width={180} height={60} title="Subprocess Shell" subtext="npm install && npm run build" icon={Icons.Shell} stepId="04" />
+        <Node id="shell" x={575} y={505} width={195} height={60} title="Subprocess Shell" subtext="npm install && npm run build" icon={Icons.Shell} stepId="04" />
 
         {/* Request Router Inner Nodes */}
         <Node id="router" x={285} y={345} width={180} height={65} title="Request Router" subtext="Wildcard Subdomain Proxy" icon={Icons.Router} stepId="04" />

@@ -37,11 +37,11 @@ export function Terminal() {
       <div
         style={{
           position: "relative",
-          borderRadius: 20,
+          borderRadius: 11,
           border: "1px solid var(--border)",
-          background: "var(--bg-card)",
+          background: "rgba(0, 0, 0, 0.17)",
           padding: 8,
-          backdropFilter: "blur(12px)",
+          backdropFilter: "blur(40px)",
         }}
       >
         <CornerBracket style={{ top: -6, left: -6 }} rotate={0} />
@@ -52,7 +52,7 @@ export function Terminal() {
         {/* Inner frame */}
         <div
           style={{
-            borderRadius: 14,
+            borderRadius: 8,
             border: "1px solid var(--border-card)",
             overflow: "hidden",
             background: "linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%)",
@@ -186,7 +186,7 @@ export default function LandingHero() {
                 animation: "pulse-dot 2s ease infinite",
               }}
             />
-            <span style={{ color: "var(--text-muted)" }}>Live on bharath.codes</span>
+            <span style={{ color: "#ffffff67" }}>Live on bharath.codes</span>
           </motion.a>
 
           {/* Heading */}
@@ -290,7 +290,7 @@ export default function LandingHero() {
                 gap: 8,
                 border: "none",
                 borderRadius: 6,
-                boxShadow: "0 32px 64px -16px #0006, 0 16px 32px -8px #0006, 0 8px 16px -4px #0004, 0 4px 8px -2px #0004, 0 -8px 16px -1px #0003, 0 2px 4px -1px #0004, 0 0 0 1px #000, inset 0 0 0 1px #e58efa14, inset 0 1px rgba(200, 153, 248, 0.94)",
+                boxShadow: "0 32px 64px -16px #0006, 0 16px 32px -8px #0006, 0 8px 16px -4px #0004, 0 4px 8px -2px #0004, 0 -8px 16px -1px #0003, 0 2px 4px -1px #0004, inset 0 0 0 1px #e58efa14, inset 0 1px rgba(200, 153, 248, 0.94)",
                 background: "var(--primary)",
                 padding: "12px 24px",
                 fontSize: 14,
@@ -327,12 +327,12 @@ export default function LandingHero() {
                 gap: 8,
                 border: "none",
                 borderRadius: 6,
-                boxShadow: "0 32px 64px -16px #0006, 0 16px 32px -8px #0006, 0 8px 16px -4px #0004, 0 4px 8px -2px #0004, 0 -8px 16px -1px #0003, 0 2px 4px -1px #0004, 0 0 0 1px #000, inset 0 0 0 1px #ffffff14, inset 0 1px #fff3",
-                background: "rgba(255,255,255,0.02)",
+                boxShadow: "0 32px 64px -16px #0006, 0 16px 32px -8px #0006, 0 8px 16px -4px #0004, 0 4px 8px -2px #0004, 0 -8px 16px -1px #0003, 0 2px 4px -1px #0004, inset 0 0 0 1px #ffffff14, inset 0 1px #fff3",
+                background: "rgba(255, 255, 255, 0.16)",
                 padding: "12px 24px",
                 fontSize: 14,
                 fontWeight: 500,
-                color: "var(--text-secondary)",
+                color: "#ffffff",
                 textDecoration: "none",
                 fontFamily: "var(--font-body)",
                 backdropFilter: "blur(4px)",
