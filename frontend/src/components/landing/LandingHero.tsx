@@ -186,7 +186,7 @@ export default function LandingHero() {
                 animation: "pulse-dot 2s ease infinite",
               }}
             />
-            <span style={{ color: "#ffffff67" }}>Live on bharath.codes</span>
+            <span style={{ color: "#ffffff67" }}>Live on xyz.bharathships.me</span>
           </motion.a>
 
           {/* Heading */}
